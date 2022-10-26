@@ -7,9 +7,23 @@ import Box from "@mui/material/Box";
 
 const HomePage = () => {
   const [file, setFile] = useState(null);
+  const fileReader = new FileReader();
 
   const changeHandler = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (file) {
+      fileReader.onload = function (event) {
+        const csvOutput = event.target.result;
+        console.log(csvOutput);
+      };
+
+      fileReader.readAsText(file);
+    }
   };
 
   return (
@@ -17,6 +31,7 @@ const HomePage = () => {
       <CssBaseline />
       <Box
         component="form"
+        onSubmit={submitHandler}
         sx={{ bgcolor: "#ccc", pt: 2, pb: 2 }}
       >
         <Button color="secondary" component="label">
