@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
@@ -6,7 +7,7 @@ import Box from "@mui/material/Box";
 
 const HomePage = () => {
   const [file, setFile] = useState(null);
-  const [csvArray, setCsvArray] = useState([]);
+  const navigate = useNavigate();
 
   const fileReader = new FileReader();
 
@@ -40,19 +41,23 @@ const HomePage = () => {
       }
     });
 
-    setCsvArray(newArray);
+    return newArray;
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     if (file) {
+      fileReader.readAsText(file);
+
       fileReader.onload = function (event) {
         const csvOutput = event.target.result;
-        csvFileToArray(csvOutput);
+        const csvArray = csvFileToArray(csvOutput);
+        navigate("/users", { state: { csvArray: csvArray } });
       };
-
-      fileReader.readAsText(file);
+      
+    } else {
+      console.log("error!");
     }
   };
 
