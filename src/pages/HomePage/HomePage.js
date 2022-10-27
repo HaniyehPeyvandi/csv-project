@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   const [file, setFile] = useState(null);
@@ -68,7 +69,7 @@ const HomePage = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <CssBaseline />
       <Paper component="form" onSubmit={submitHandler} sx={{ p: 2, mt: 3 }}>
         <Typography variant="body1" sx={{ mb: 2 }}>
@@ -83,13 +84,12 @@ const HomePage = () => {
             <Button color="secondary" variant="contained" component="label">
               Upload
               <input
-                hidden
+                className={styles.fileInput}
                 accept=".csv"
                 type="file"
                 onChange={changeHandler}
               />
             </Button>
-            {file && <Typography variant="subtitle2">{file.name}</Typography>}
           </Stack>
           <Button type="submit" variant="contained" color="secondary">
             show data
