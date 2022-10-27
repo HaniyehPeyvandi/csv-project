@@ -3,16 +3,20 @@ import { useNavigate } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 
 const HomePage = () => {
   const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const fileReader = new FileReader();
 
   const changeHandler = (e) => {
     setFile(e.target.files[0]);
+    setError(null);
   };
 
   const csvFileToArray = (text) => {
@@ -48,34 +52,55 @@ const HomePage = () => {
     e.preventDefault();
 
     if (file) {
-      fileReader.readAsText(file);
-
-      fileReader.onload = function (event) {
-        const csvOutput = event.target.result;
-        const csvArray = csvFileToArray(csvOutput);
-        navigate("/users", { state: { csvArray: csvArray } });
-      };
-      
+      if (file.type === "text/csv") {
+        fileReader.onload = function (event) {
+          const csvOutput = event.target.result;
+          const csvArray = csvFileToArray(csvOutput);
+          navigate("/users", { state: { csvArray: csvArray } });
+        };
+        fileReader.readAsText(file);
+      } else {
+        setError("File type is invalid");
+      }
     } else {
-      console.log("error!");
+      setError("Please choose a file");
     }
   };
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <Box
-        component="form"
-        onSubmit={submitHandler}
-        sx={{ bgcolor: "#ccc", pt: 2, pb: 2 }}
-      >
-        <Button color="secondary" component="label">
-          <input accept=".csv" type="file" onChange={changeHandler} />
-        </Button>
-        <Button type="submit" variant="contained" color="secondary">
-          show data
-        </Button>
-      </Box>
+      <Paper component="form" onSubmit={submitHandler} sx={{ p: 2, mt: 3 }}>
+        <Typography variant="body1" sx={{ mb: 2 }}>
+          Please upload your csv file
+        </Typography>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Button color="secondary" variant="contained" component="label">
+              Upload
+              <input
+                hidden
+                accept=".csv"
+                type="file"
+                onChange={changeHandler}
+              />
+            </Button>
+            {file && <Typography variant="subtitle2">{file.name}</Typography>}
+          </Stack>
+          <Button type="submit" variant="contained" color="secondary">
+            show data
+          </Button>
+        </Stack>
+        {error && (
+          <Typography variant="body2" sx={{ color: "red", mt: 1 }}>
+            {error}
+          </Typography>
+        )}
+      </Paper>
     </Container>
   );
 };
