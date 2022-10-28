@@ -12,6 +12,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
+import AssignmentIndOutlinedIcon from "@mui/icons-material/AssignmentIndOutlined";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import InputAdornment from '@mui/material/InputAdornment';
 
 const UsersPage = () => {
   const { state } = useLocation();
@@ -35,7 +40,8 @@ const UsersPage = () => {
   };
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, filteredUsers.length - page * rowsPerPage);
+    rowsPerPage -
+    Math.min(rowsPerPage, filteredUsers.length - page * rowsPerPage);
 
   useEffect(() => {
     setUsers(csvArray);
@@ -71,17 +77,37 @@ const UsersPage = () => {
           color="secondary"
           onChange={searchHandler}
           value={searchValue}
+          placeholder="Enter first name or last name"
+          InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchOutlinedIcon/>
+            </InputAdornment>
+          ),
+        }}
         />
       </Box>
       {users.length ? (
-        <TableContainer component={Paper} sx={{ mt: 3,mb:3 }}>
+        <TableContainer component={Paper} sx={{ mt: 3, mb: 3 }}>
           <Table aria-label="simple table">
-            <TableHead>
+            <TableHead sx={{ backgroundColor: "#FFEA79" }}>
               <TableRow>
-                <TableCell align="center">Index</TableCell>
-                <TableCell align="center">First Name</TableCell>
-                <TableCell align="center">Last Name</TableCell>
-                <TableCell align="center">User ID</TableCell>
+                <TableCell align="center" sx={{ display:"flex",justifyContent:"center" }}>
+                  <TagOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+                  Index
+                </TableCell>
+                <TableCell align="center">
+                  <AccountCircleOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+                  First Name
+                </TableCell>
+                <TableCell align="center">
+                  <AccountCircleOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+                  Last Name
+                </TableCell>
+                <TableCell align="center">
+                  <AssignmentIndOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+                  User ID
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -135,14 +161,19 @@ const UsersPage = () => {
             </TableBody>
           </Table>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25,50,100]}
+            rowsPerPageOptions={[5, 10, 25, 50, 100]}
             component="div"
             count={filteredUsers.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            sx={{ display: 'flex',justifyContent: 'center',alignItems: 'center' }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#FFEA79",
+            }}
           />
         </TableContainer>
       ) : (
