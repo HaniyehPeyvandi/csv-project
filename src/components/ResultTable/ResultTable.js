@@ -17,7 +17,7 @@ import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
 import AssignmentIndOutlinedIcon from "@mui/icons-material/AssignmentIndOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ResultTable = () => {
   const csvArray = useUsers();
@@ -43,7 +43,7 @@ const ResultTable = () => {
     setPage(0);
   };
 
-   // Avoid a layout jump when reaching the last page with empty rows
+  // Avoid a layout jump when reaching the last page with empty rows
   const emptyRows =
     rowsPerPage -
     Math.min(rowsPerPage, filteredUsers.length - page * rowsPerPage);
@@ -78,6 +78,7 @@ const ResultTable = () => {
   };
 
   const searchHandler = (e) => {
+    setPage(0);
     setSearchValue(e.target.value);
     let search = e.target.value;
     filterUsers(search);
