@@ -76,21 +76,25 @@ const HomePage = () => {
           Please upload your csv file
         </Typography>
         <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
+          direction={{ xs: "column", sm: "row" }}
+          spacing={{ xs: 2 }}
+          alignItems={{ xs: "flex-start", sm: "center" }}
+          justifyContent={{ sm: "space-between" }}
         >
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Button color="secondary" variant="contained" component="label">
-              Upload
-              <input
-                className={styles.fileInput}
-                accept=".csv"
-                type="file"
-                onChange={changeHandler}
-              />
-            </Button>
-          </Stack>
+          <Button
+            color="secondary"
+            variant="outlined"
+            component="label"
+            className={styles.fileInputLabel}
+          >
+            Upload
+            <input
+              className={styles.fileInput}
+              accept=".csv"
+              type="file"
+              onChange={changeHandler}
+            />
+          </Button>
           <Button type="submit" variant="contained" color="secondary">
             show data
           </Button>
