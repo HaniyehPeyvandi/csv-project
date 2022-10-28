@@ -1,10 +1,10 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 
 const UsersContext = React.createContext();
 const UsersContextDispatcher = React.createContext();
 
-const UsersProvider = ({children}) => {
-  const [users,setUsers] = useState([]);
+const UsersProvider = ({ children }) => {
+  const [users, setUsers] = useState([]);
 
   return (
     <UsersContext.Provider value={users}>
@@ -13,7 +13,7 @@ const UsersProvider = ({children}) => {
       </UsersContextDispatcher.Provider>
     </UsersContext.Provider>
   );
-}
+};
 
 export default UsersProvider;
 

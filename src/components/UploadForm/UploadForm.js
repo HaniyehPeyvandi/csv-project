@@ -53,7 +53,7 @@ const UploadForm = () => {
     setUsers(newArray);
   };
 
-  // This function runs after submitting the form and validates the file and passes the file content to csvFileToArray function and then navigates user to UsersPage  
+  // This function runs after submitting the form and validates the file and passes the file content to csvFileToArray function and then navigates user to UsersPage
   const submitHandler = (e) => {
     e.preventDefault();
 
