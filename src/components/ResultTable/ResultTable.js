@@ -32,15 +32,18 @@ const ResultTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  // This function handles changing the pages
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
+  // This function handles changing rows per page option
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
+   // Avoid a layout jump when reaching the last page with empty rows
   const emptyRows =
     rowsPerPage -
     Math.min(rowsPerPage, filteredUsers.length - page * rowsPerPage);
@@ -48,6 +51,8 @@ const ResultTable = () => {
   useEffect(() => {
     setUsers(csvArray);
     setFilteredUsers(csvArray);
+
+    // Set timer intentionally to be able to see loading spinner
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -57,6 +62,7 @@ const ResultTable = () => {
     };
   }, []);
 
+  // This function filters users based on search item
   const filterUsers = (search) => {
     if (!search || search === "") {
       setFilteredUsers(users);

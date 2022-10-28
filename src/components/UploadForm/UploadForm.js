@@ -23,6 +23,7 @@ const UploadForm = () => {
     setError(null);
   };
 
+  // This function gets csv file content and converts it to an array
   const csvFileToArray = (text) => {
     const headers = text.slice(0, text.indexOf("\r")).split(",");
     const rows = text
@@ -52,6 +53,7 @@ const UploadForm = () => {
     setUsers(newArray);
   };
 
+  // This function runs after submitting the form and validates the file and passes the file content to csvFileToArray function and then navigates user to UsersPage  
   const submitHandler = (e) => {
     e.preventDefault();
 
