@@ -91,23 +91,32 @@ const ResultTable = () => {
           <Table aria-label="simple table">
             <TableHead sx={{ backgroundColor: "#FFEA79" }}>
               <TableRow>
-                <TableCell
-                  align="center"
-                  sx={{ display: "flex", justifyContent: "center" }}
-                >
-                  <TagOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+                <TableCell align="center">
+                  <TagOutlinedIcon
+                    fontSize="small"
+                    sx={{ mr: 1, verticalAlign: "middle" }}
+                  />
                   Index
                 </TableCell>
                 <TableCell align="center">
-                  <AccountCircleOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+                  <AccountCircleOutlinedIcon
+                    fontSize="small"
+                    sx={{ mr: 1, verticalAlign: "middle" }}
+                  />
                   First Name
                 </TableCell>
                 <TableCell align="center">
-                  <AccountCircleOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+                  <AccountCircleOutlinedIcon
+                    fontSize="small"
+                    sx={{ mr: 1, verticalAlign: "middle" }}
+                  />
                   Last Name
                 </TableCell>
                 <TableCell align="center">
-                  <AssignmentIndOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+                  <AssignmentIndOutlinedIcon
+                    fontSize="small"
+                    sx={{ mr: 1, verticalAlign: "middle" }}
+                  />
                   User ID
                 </TableCell>
               </TableRow>
