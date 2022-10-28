@@ -62,6 +62,9 @@ const UploadForm = () => {
           csvFileToArray(csvOutput);
           navigate("/users");
         };
+        fileReader.onerror = function (event) {
+          setError("File has error");
+        };
         fileReader.readAsText(file);
       } else {
         setError("File type is invalid");
