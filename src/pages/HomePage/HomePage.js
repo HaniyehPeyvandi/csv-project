@@ -8,11 +8,13 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import styles from "./HomePage.module.css";
+import { useUsersActions } from "../../Providers/UsersProvider";
 
 const HomePage = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const setUsers = useUsersActions();
 
   const fileReader = new FileReader();
 
@@ -47,7 +49,7 @@ const HomePage = () => {
       }
     });
 
-    return newArray;
+    setUsers(newArray);
   };
 
   const submitHandler = (e) => {
@@ -57,8 +59,8 @@ const HomePage = () => {
       if (file.type === "text/csv") {
         fileReader.onload = function (event) {
           const csvOutput = event.target.result;
-          const csvArray = csvFileToArray(csvOutput);
-          navigate("/users", { state: { csvArray: csvArray } });
+          csvFileToArray(csvOutput);
+          navigate("/users");
         };
         fileReader.readAsText(file);
       } else {

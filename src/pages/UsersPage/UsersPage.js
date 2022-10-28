@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -17,10 +16,10 @@ import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
 import AssignmentIndOutlinedIcon from "@mui/icons-material/AssignmentIndOutlined";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useUsers } from "../../Providers/UsersProvider";
 
 const UsersPage = () => {
-  const { state } = useLocation();
-  const { csvArray } = state;
+  const csvArray = useUsers();
 
   const [searchValue, setSearchValue] = useState("");
 
