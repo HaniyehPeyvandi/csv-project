@@ -17,9 +17,12 @@ import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
 import AssignmentIndOutlinedIcon from "@mui/icons-material/AssignmentIndOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ResultTable = () => {
   const csvArray = useUsers();
+
+  const [loading, setLoading] = useState(true);
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -45,6 +48,13 @@ const ResultTable = () => {
   useEffect(() => {
     setUsers(csvArray);
     setFilteredUsers(csvArray);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   const filterUsers = (search) => {
@@ -86,7 +96,11 @@ const ResultTable = () => {
           }}
         />
       </Box>
-      {users.length ? (
+      {loading ? (
+        <Paper sx={{ mt: 3, p: 2 }} align="center">
+          <CircularProgress color="secondary" />
+        </Paper>
+      ) : users.length ? (
         <TableContainer component={Paper} sx={{ mt: 3, mb: 3 }}>
           <Table aria-label="simple table">
             <TableHead sx={{ backgroundColor: "#FFEA79" }}>
