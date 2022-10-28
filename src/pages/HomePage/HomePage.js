@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import styles from "./HomePage.module.css";
 
 const HomePage = () => {
@@ -87,7 +88,7 @@ const HomePage = () => {
             component="label"
             className={styles.fileInputLabel}
           >
-            Upload
+           Upload
             <input
               className={styles.fileInput}
               accept=".csv"
@@ -96,7 +97,7 @@ const HomePage = () => {
             />
           </Button>
           <Button type="submit" variant="contained" color="secondary">
-            show data
+            <VisibilityIcon sx={{mr:1}}/>show data
           </Button>
         </Stack>
         {error && (
