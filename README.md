@@ -16,17 +16,17 @@ Demo on [Vercel](https://csv-project.vercel.app/).
 
 ## Screenshots
 
-![1.PNG](screenshots/1.png)
+![1.PNG](screenshots/1.PNG)
 
-![2.PNG](screenshots/2.png)
+![2.PNG](screenshots/2.PNG)
 
-![3.PNG](screenshots/3.png)
+![3.PNG](screenshots/3.PNG)
 
-![4.PNG](screenshots/4.png)
+![4.PNG](screenshots/4.PNG)
 
-![5.PNG](screenshots/5.png)
+![5.PNG](screenshots/5.PNG)
 
-![6.PNG](screenshots/6.png)
+![6.PNG](screenshots/6.PNG)
 
 ## Getting Started with Create React App
 
